@@ -22,6 +22,7 @@ function Logs() {
   if (loading) {
     return <Preloader />;
   }
+  
   return (
     <ul className="collection with-header">
       <li className="collection-header">

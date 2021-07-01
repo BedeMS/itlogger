@@ -8,9 +8,9 @@ function SearchBar() {
           <div className="input-field">
             <input id="search" type="search" />
             <label className="label-icon" htmlFor="search">
-              <i className="material-icons">search</i>
+              <i className="material-icons">Search</i>
             </label>
-            <i className="material-icons">close</i>
+            <i className="material-icons">Close</i>
           </div>
         </form>
       </div>
