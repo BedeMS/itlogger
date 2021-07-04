@@ -1,28 +1,36 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import LogItem from "./LogItem";
 import Preloader from "../layout/Preloader";
+import { getLogs } from "./../../actions/logActions";
 
-function Logs() {
-  const [logs, setLogs] = useState([]);
-  const [loading, setLoading] = useState(false);
+// We're destructuring our props from our actions and our maptostate;
+// Our actions are actually props from either need to destrucure or
+// write props.getLogs()
+function Logs({ log: { logs, loading }, getLogs }) {
+  // const [logs, setLogs] = useState([]);
+  // const [loading, setLoading] = useState(false);
 
-  const getLogs = async () => {
-    setLoading(true);
-    const res = await fetch("/logs");
-    const data = await res.json();
+  // const getLogs = async () => {
+  //   setLoading(true);
+  //   const res = await fetch("/logs");
+  //   const data = await res.json();
 
-    setLogs(data);
-    setLoading(false);
-  };
+  //   setLogs(data);
+  //   setLoading(false);
+  // };
 
   useEffect(() => {
+    //before we were calling this from within the component but
+    // now we're bringing it in from our actions
     getLogs();
   }, []);
 
-  if (loading) {
+  if (loading || logs === null) {
     return <Preloader />;
   }
-  
+
   return (
     <ul className="collection with-header">
       <li className="collection-header">
@@ -37,4 +45,17 @@ function Logs() {
   );
 }
 
-export default Logs;
+Logs.propTypes = {
+  log: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  // state.'name'; the name is the same as the state we're
+  // retreiving from our rootreducer. If the name is 'log',
+  // then we would write: state.'log'.
+  log: state.log,
+});
+
+//this 'connect()(component)' is what connect our redux to our
+// component. It takes in a 'mapStateToProps()' and our actions
+export default connect(mapStateToProps, { getLogs })(Logs);
