@@ -18,10 +18,6 @@ function TechListModal() {
     getTechs();
   }, []);
 
-  //   if (loading) {
-  //     return <h1>Loading</h1>;
-  //   }
-
   return (
     <div id="tech-list-modal" className="modal">
       <div className="modal-content">
