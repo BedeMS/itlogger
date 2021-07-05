@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+// propType to check if we're receiving the correct data type
 import PropTypes from "prop-types";
+// Connect is what allows us to connect to redux in react
 import { connect } from "react-redux";
 import LogItem from "./LogItem";
 import Preloader from "../layout/Preloader";
+// Action: these are sent from our component to our reducer to our store and returned to us
 import { getLogs } from "./../../actions/logActions";
 
 // We're destructuring our props from our actions and our maptostate;
-// Our actions are actually props from either need to destrucure or
+// Our actions are actually props from either need to destructure or
 // write props.getLogs()
 function Logs({ log: { logs, loading }, getLogs }) {
   // const [logs, setLogs] = useState([]);
@@ -36,7 +39,7 @@ function Logs({ log: { logs, loading }, getLogs }) {
       <li className="collection-header">
         <h4 className="center">System Logs</h4>
       </li>
-      {!loading && logs.length === 0 ? (
+      {loading && logs.length === 0 ? (
         <p className="center">No Logs to show...</p>
       ) : (
         logs.map((log) => <LogItem log={log} key={log.id} />)

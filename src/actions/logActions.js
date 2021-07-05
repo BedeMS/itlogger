@@ -37,6 +37,7 @@ export const getLogs = () => async (dispatch) => {
     const res = await fetch("/logs");
     const data = await res.json();
 
+    // dispatch an action type and a payload (data)
     dispatch({
       type: GET_LOGS,
       payload: data,

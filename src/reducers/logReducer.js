@@ -1,5 +1,9 @@
+// Reducer: this is where actions are committed.
+
+// We import the actions that this reducer needs
 import { GET_LOGS, SET_LOADING, LOGS_ERROR } from "../actions/types";
 
+// We initiate a state which all reducer needs
 const initialState = {
   logs: null,
   current: null,
@@ -7,9 +11,12 @@ const initialState = {
   error: null,
 };
 
-export default (state = initialState, action) => {
+// Reducer takes in a state and action
+const reducer = (state = initialState, action) => {
   switch (action.type) {
+    // if action.type matches GET_LOGS
     case GET_LOGS:
+      // return altered state
       return {
         ...state,
         logs: action.payload,
@@ -30,3 +37,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default reducer;

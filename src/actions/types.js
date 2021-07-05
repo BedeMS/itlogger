@@ -1,3 +1,5 @@
+// We store all of our action types in one place 
+// to track and not have sort of confusion
 export const GET_LOGS = 'GET_LOGS';
 export const ADD_LOGS = 'ADD_LOGS';
 export const DELETE_LOGS = 'DELETE_LOGS';
