@@ -1,20 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { clearCurrent, updateLog } from "../../actions/logActions";
 import M from "materialize-css/dist/js/materialize.min.js";
 
-function EditLogModal() {
+function EditLogModal({ current, updateLog, clearCurrent }) {
   const [message, setMessage] = useState("");
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState("");
 
-  const onSubmit = () => {
-      if(message === "" || tech === ""){
-          M.toast({html: "Please Enter a message and/or tech"})
-      } else {
-          setMessage('');
-          setTech('');
-          setAttention(false)
-      }
+  //We're using use effect first because we need to make sure there's
+  //something in current first before set some state.
+  useEffect(() => {
+    if (current) {
+      setMessage(current.message);
+      setAttention(current.attention);
+      setTech(current.tech);
+    }
+  }, [current]);
 
+  const onSubmit = () => {
+    if (message === "" || tech === "") {
+      M.toast({ html: "Please Enter a message and/or tech" });
+    } else {
+      const log = {
+        id: current.id,
+        message,
+        attention,
+        tech,
+        date: new Date(),
+      };
+
+      updateLog(log);
+      clearCurrent();
+      // ----
+      setMessage("");
+      setTech("");
+      setAttention(false);
+    }
   };
   return (
     <div id="edit-log-modal" className="modal" style={modalStyle}>
@@ -84,4 +107,17 @@ const modalStyle = {
   padding: "2rem",
 };
 
-export default EditLogModal;
+EditLogModal.propTypes = {
+  current: PropTypes.object.isRequired,
+  updateLog: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    current: state.log.current,
+  };
+};
+
+export default connect(mapStateToProps, { updateLog, clearCurrent })(
+  EditLogModal
+);
