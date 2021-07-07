@@ -26,7 +26,7 @@ import { GET_LOGS, SET_LOADING, LOGS_ERROR } from "./types";
 // ^^Above code refactored
 //Get logs from server
 export const getLogs = () => async (dispatch) => {
-  // if we want to make an async call, that's where redux thunk
+  // if we want to make an async call, that's where redux THUNK
   // comes in. Instead of returning an object like we would for
   // a sync function, it allows us to return a function that gets
   // a "dispatch" method as an arg which lets us dispatch to our
@@ -37,7 +37,7 @@ export const getLogs = () => async (dispatch) => {
     const res = await fetch("/logs");
     const data = await res.json();
 
-    // dispatch an action type and a payload (data)
+    // Dispatch an action type and a payload (data)
     dispatch({
       type: GET_LOGS,
       payload: data,

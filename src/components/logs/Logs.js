@@ -12,6 +12,7 @@ import { getLogs } from "./../../actions/logActions";
 // Our actions are actually props from either need to destructure or
 // write props.getLogs()
 function Logs({ log: { logs, loading }, getLogs }) {
+  // The method we'd use without redux.
   // const [logs, setLogs] = useState([]);
   // const [loading, setLoading] = useState(false);
 
@@ -52,6 +53,7 @@ Logs.propTypes = {
   log: PropTypes.object.isRequired,
 };
 
+// This maps our states to our props.
 const mapStateToProps = (state) => ({
   // state.'name'; the name is the same as the state we're
   // retreiving from our rootreducer. If the name is 'log',
