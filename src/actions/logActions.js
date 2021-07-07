@@ -1,7 +1,7 @@
 // what is the difference b/t Actions and
 // going straight to the reducer folder?
 
-import { GET_LOGS, SET_LOADING, LOGS_ERROR } from "./types";
+import { GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOG } from "./types";
 
 // export const getLogs = () => {
 // if we want to make an async call, that's where redux thunk
@@ -54,4 +54,34 @@ export const setLoading = () => {
   return {
     type: SET_LOADING,
   };
+};
+
+export const addLog = (log) => async (dispatch) => {
+  try {
+    setLoading();
+
+    // Send a POST request
+    const res = await fetch("/logs", {
+      method: "POST",
+      body: JSON.stringify(log),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    // get Data
+    const data = await res.json();
+
+    // dispatch to our reducers
+    dispatch({
+      type: ADD_LOG,
+      payload: data,
+    });
+  } catch (err) {
+    // dispatch to our reducers
+    dispatch({
+      type: LOGS_ERROR,
+      payload: err,
+    });
+  }
 };

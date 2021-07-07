@@ -1,42 +1,42 @@
 {
-    "logs": [
-        {
-            "id": 1,
-            "message": "Changed hard drive on workstation 005",
-            "attention": false,
-            "date": "03-02-2019",
-            "tech": "Sam Smith"
-        },
-        {
-            "id": 2,
-            "message": "Workstation 007 not posting",
-            "attention": true,
-            "date": "03-02-2019",
-            "tech": "John Doe"
-        },
-        {
-            "id": 3,
-            "message": "Changed memory on workstation 009",
-            "attention": false,
-            "date": "03-02-2019",
-            "tech": "Who Ever"
-        }
-    ],
-    "techs": [
-        {
-            "id": 1,
-            "firstName": "John",
-            "lastName": "Doe"
-        },
-        {
-            "id": 2,
-            "firstName": "Sam",
-            "lastName": "Smith"
-        },
-        {
-            "id": 3,
-            "firstName": "Sara",
-            "lastName": "Wilson"
-        }
-    ]
+  "logs": [
+    {
+      "message": "Wire tangled",
+      "attention": true,
+      "tech": "Sam Smith",
+      "date": "2021-07-07T06:21:26.003Z",
+      "id": 1
+    },
+    {
+      "message": "Brain not functioning",
+      "attention": false,
+      "tech": "Sam Smith",
+      "date": "2021-07-07T06:21:40.004Z",
+      "id": 2
+    },
+    {
+      "message": "Working ER",
+      "attention": false,
+      "tech": "Sara Wilson",
+      "date": "2021-07-07T06:21:50.971Z",
+      "id": 3
+    }
+  ],
+  "techs": [
+    {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    {
+      "id": 2,
+      "firstName": "Sam",
+      "lastName": "Smith"
+    },
+    {
+      "id": 3,
+      "firstName": "Sara",
+      "lastName": "Wilson"
+    }
+  ]
 }

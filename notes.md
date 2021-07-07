@@ -1,9 +1,9 @@
 Redux Dynamic
 
 1. Setup the Store
-2. Setup Actions and Types
-3. Setup CombineReducers & Reducers
-4. Subscribe Store to Components
+2. Subscribe Store to Components
+3. Setup Actions and Types
+4. Setup CombineReducers & Reducers
 5. Connect Component with Redux
    > > > > 1. Import connect react-redux and Import required actions
    > > > > 2. Setup connect as a High Order Component

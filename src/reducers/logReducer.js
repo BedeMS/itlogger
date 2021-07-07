@@ -1,7 +1,7 @@
 // Reducer: this is where actions are committed.
 
 // We import the actions that this reducer needs
-import { GET_LOGS, SET_LOADING, LOGS_ERROR } from "../actions/types";
+import { GET_LOGS, ADD_LOG, SET_LOADING, LOGS_ERROR } from "../actions/types";
 
 // We initiate a state which all reducer needs
 const initialState = {
@@ -20,6 +20,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         logs: action.payload,
+        loading: false,
+      };
+    case ADD_LOG:
+      return {
+        ...state,
+        logs: [...state.logs, action.payload],
         loading: false,
       };
     case SET_LOADING:

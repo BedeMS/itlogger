@@ -51,6 +51,7 @@ function Logs({ log: { logs, loading }, getLogs }) {
 
 Logs.propTypes = {
   log: PropTypes.object.isRequired,
+  getLogs: PropTypes.func.isRequired,
 };
 
 // This maps our states to our props.
