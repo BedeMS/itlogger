@@ -10,6 +10,7 @@ import {
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_LOG,
+  SEARCH_LOGS,
 } from "./types";
 
 // export const getLogs = () => {
@@ -152,6 +153,27 @@ export const updateLog = (log) => async (dispatch) => {
     });
   } catch (err) {
     // dispatch to our reducers
+    dispatch({
+      type: LOGS_ERROR,
+      payload: err,
+    });
+  }
+};
+
+//Search logs from server
+export const searchLogs = (text) => async (dispatch) => {
+  try {
+    setLoading();
+
+    const res = await fetch(`/logs?q=${text}`);
+    const data = await res.json();
+
+    // Dispatch an action type and a payload (data)
+    dispatch({
+      type: SEARCH_LOGS,
+      payload: data,
+    });
+  } catch (err) {
     dispatch({
       type: LOGS_ERROR,
       payload: err,
