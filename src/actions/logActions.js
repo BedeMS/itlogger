@@ -52,10 +52,11 @@ export const getLogs = () => async (dispatch) => {
       type: GET_LOGS,
       payload: data,
     });
+    
   } catch (err) {
     dispatch({
       type: LOGS_ERROR,
-      payload: err.response.data,
+      payload: err.response.statusText,
     });
   }
 };
@@ -105,7 +106,7 @@ export const addLog = (log) => async (dispatch) => {
     // dispatch to our reducers
     dispatch({
       type: LOGS_ERROR,
-      payload: err,
+      payload: err.response.statusText,
     });
   }
 };
@@ -126,7 +127,7 @@ export const deleteLog = (id) => async (dispatch) => {
     // dispatch to our reducers
     dispatch({
       type: LOGS_ERROR,
-      payload: err,
+      payload: err.response.statusText,
     });
   }
 };
@@ -155,7 +156,7 @@ export const updateLog = (log) => async (dispatch) => {
     // dispatch to our reducers
     dispatch({
       type: LOGS_ERROR,
-      payload: err,
+      payload: err.response.statusText,
     });
   }
 };
@@ -176,7 +177,7 @@ export const searchLogs = (text) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: LOGS_ERROR,
-      payload: err,
+      payload: err.response.statusText,
     });
   }
 };

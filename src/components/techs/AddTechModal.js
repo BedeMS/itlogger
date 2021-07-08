@@ -1,18 +1,25 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { addTech } from "../../actions/techActions";
+import PropTypes from "prop-types";
 import M from "materialize-css/dist/js/materialize.min.js";
 
-function AddTechModal() {
+function AddTechModal({ addTech }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
   const onSubmit = () => {
-    if (firstName === "" || lastName === "") {
+    if (firstName.trim() === "" || lastName.trim() === "") {
       M.toast({ html: "Please Enter the First and Last Name" });
     } else {
+      const newTech = {
+        firstName,
+        lastName,
+      };
+      addTech(newTech);
       setFirstName("");
       setLastName("");
     }
-    console.log("Message Tech and Attention");
   };
   return (
     <div id="add-tech-modal" className="modal">
@@ -31,17 +38,17 @@ function AddTechModal() {
         </div>
       </div>
       <div className="row modal-content">
-          <div className="input-field">
-            <input
-              type="text"
-              name="lastName"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-            <label htmlFor="lastName" className="active">
-              Last Name
-            </label>
-          </div>
+        <div className="input-field">
+          <input
+            type="text"
+            name="lastName"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+          <label htmlFor="lastName" className="active">
+            Last Name
+          </label>
+        </div>
       </div>
       <div className="modal-footer">
         <a
@@ -56,10 +63,8 @@ function AddTechModal() {
   );
 }
 
-// const modalStyle = {
-//   width: "75%",
-//   height: "75%",
-//   padding: "2rem",
-// };
+AddTechModal.propTypes = {
+  addTech: PropTypes.func.isRequired,
+};
 
-export default AddTechModal;
+export default connect(null, { addTech })(AddTechModal);

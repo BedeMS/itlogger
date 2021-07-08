@@ -27,13 +27,6 @@
       "tech": "John Doe",
       "date": "2021-07-07T06:43:24.647Z",
       "id": 4
-    },
-    {
-      "message": "Tech Lead",
-      "attention": true,
-      "tech": "Sam Smith",
-      "date": "2021-07-08T06:09:51.777Z",
-      "id": 5
     }
   ],
   "techs": [
@@ -51,6 +44,17 @@
       "id": 3,
       "firstName": "Sara",
       "lastName": "Wilson"
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "firstName": "Bede",
+      "lastName": "Sahlu",
+      "id": 6
     }
   ]
 }
