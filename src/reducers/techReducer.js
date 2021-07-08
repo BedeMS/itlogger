@@ -1,5 +1,10 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { GET_TECHS, SET_LOADING, ADD_TECH } from "../actions/types";
+import {
+  GET_TECHS,
+  SET_LOADING,
+  ADD_TECH,
+  DELETE_TECH,
+} from "../actions/types";
 
 const initState = {
   techs: null,
@@ -24,6 +29,12 @@ export default (state = initState, action) => {
       return {
         ...state,
         techs: [...state.techs, action.payload],
+        loading: false,
+      };
+    case DELETE_TECH:
+      return {
+        ...state,
+        techs: state.techs.filter((t) => t.id !== action.payload),
         loading: false,
       };
     default:
